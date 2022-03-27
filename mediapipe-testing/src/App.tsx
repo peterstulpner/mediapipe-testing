@@ -1,12 +1,30 @@
-import React from "react";
+import { Button } from "react-bootstrap";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import HandsComponent from "./mediapipe/HandsComponent";
 
-function App() {
+const App = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  const handleClick = () => {
+    setShowVideo(!showVideo);
+  };
+
   return (
     <div className="App">
-      <p>Hands Testing</p>
+      <h1>Hands Testing</h1>
+      <Button
+        style={{ width: "200px", height: "30px" }}
+        variant={showVideo ? "dark" : "light"}
+        onClick={handleClick}
+      >
+        {showVideo ? "Hide Video" : "Show Video"}
+      </Button>
+
+      {showVideo ? <HandsComponent showVideo={showVideo} /> : <></>}
     </div>
   );
-}
+};
 
 export default App;
