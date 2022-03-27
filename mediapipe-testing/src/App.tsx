@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "react-bootstrap";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import HandsComponent from "./mediapipe/HandsComponent";
 
-function App() {
+const App = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  const handleClick = () => {
+    setShowVideo(!showVideo);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hands Testing</h1>
+      <Button
+        style={{ width: "200px", height: "30px" }}
+        variant={showVideo ? "dark" : "light"}
+        onClick={handleClick}
+      >
+        {showVideo ? "Hide Video" : "Show Video"}
+      </Button>
+
+      {showVideo ? <HandsComponent showVideo={showVideo} /> : <></>}
     </div>
   );
-}
+};
 
 export default App;
